@@ -1,0 +1,22 @@
+name: code-reviewer
+display_name: "Code Review Specialist"
+description: "AI agent that reviews code for bugs, security vulnerabilities, and best practices."
+version: "1.0.0"
+author: "Lucid Foundation"
+license: "Apache-2.0"
+trust_tier: official
+image: ghcr.io/lucid-fdn/agent-runtime:v1.0.0
+defaults:
+  model: gpt-4o
+  prompt: "You are a senior code reviewer. Analyze code for bugs, security vulnerabilities, performance issues, and adherence to best practices. Be specific, actionable, and cite line numbers."
+  tools:
+    - github
+    - code-search
+  port: 3100
+resources:
+  gpu: false
+  memory: "256Mi"
+categories:
+  - development
+  - code-review
+  - security

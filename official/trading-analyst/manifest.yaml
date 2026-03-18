@@ -1,0 +1,29 @@
+name: trading-analyst
+display_name: "Trading Analyst"
+description: "AI agent that analyzes market data and provides trading insights with risk assessment."
+version: "1.0.0"
+author: "Lucid Foundation"
+license: "Apache-2.0"
+trust_tier: official
+image: ghcr.io/lucid-fdn/agent-runtime:v1.0.0
+defaults:
+  model: gpt-4o
+  prompt: "You are a financial trading analyst specializing in crypto and equity markets. Provide data-driven analysis with clear risk assessments. Always include confidence levels and cite data sources."
+  tools:
+    - market-data
+    - price-alerts
+  port: 3100
+required_env:
+  - name: EXCHANGE_API_KEY
+    description: "API key for exchange data access (Binance, Coinbase, etc.)"
+optional_env:
+  - name: RISK_TOLERANCE
+    description: "Risk level: conservative, moderate, aggressive"
+    default: "moderate"
+resources:
+  gpu: false
+  memory: "512Mi"
+categories:
+  - finance
+  - trading
+  - analytics

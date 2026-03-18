@@ -1,0 +1,37 @@
+{
+  "agents": [
+    {
+      "name": "base-runtime",
+      "display_name": "Lucid Base Runtime",
+      "version": "1.0.0",
+      "trust_tier": "official",
+      "categories": ["general", "assistant"],
+      "image": "ghcr.io/lucid-fdn/agent-runtime:v1.0.0"
+    },
+    {
+      "name": "trading-analyst",
+      "display_name": "Trading Analyst",
+      "version": "1.0.0",
+      "trust_tier": "official",
+      "categories": ["finance", "trading", "analytics"],
+      "image": "ghcr.io/lucid-fdn/agent-runtime:v1.0.0"
+    },
+    {
+      "name": "code-reviewer",
+      "display_name": "Code Review Specialist",
+      "version": "1.0.0",
+      "trust_tier": "official",
+      "categories": ["development", "code-review", "security"],
+      "image": "ghcr.io/lucid-fdn/agent-runtime:v1.0.0"
+    },
+    {
+      "name": "openclaw",
+      "display_name": "OpenClaw Personal Assistant",
+      "version": "1.0.0",
+      "trust_tier": "official",
+      "categories": ["assistant", "messaging", "personal"],
+      "image": "ghcr.io/openclaw/openclaw:latest"
+    }
+  ],
+  "generated_at": "2026-03-18T22:00:00Z"
+}

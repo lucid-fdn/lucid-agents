@@ -1,0 +1,24 @@
+name: base-runtime
+display_name: "Lucid Base Runtime"
+description: "Configurable AI agent — set model, prompt, and tools via env vars. Zero code."
+version: "1.0.0"
+author: "Lucid Foundation"
+license: "Apache-2.0"
+trust_tier: official
+image: ghcr.io/lucid-fdn/agent-runtime:v1.0.0
+defaults:
+  model: gpt-4o
+  prompt: "You are a helpful AI assistant."
+  port: 3100
+optional_env:
+  - name: LUCID_TOOLS
+    description: "Comma-separated tool passport IDs"
+  - name: LUCID_MODEL
+    description: "Model identifier"
+    default: "gpt-4o"
+resources:
+  gpu: false
+  memory: "256Mi"
+categories:
+  - general
+  - assistant
