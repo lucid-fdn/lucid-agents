@@ -5,7 +5,10 @@
       "display_name": "Lucid Base Runtime",
       "version": "1.0.0",
       "trust_tier": "official",
-      "categories": ["general", "assistant"],
+      "categories": [
+        "general",
+        "assistant"
+      ],
       "image": "ghcr.io/lucid-fdn/agent-runtime:v1.0.0"
     },
     {
@@ -13,7 +16,11 @@
       "display_name": "Trading Analyst",
       "version": "1.0.0",
       "trust_tier": "official",
-      "categories": ["finance", "trading", "analytics"],
+      "categories": [
+        "finance",
+        "trading",
+        "analytics"
+      ],
       "image": "ghcr.io/lucid-fdn/agent-runtime:v1.0.0"
     },
     {
@@ -21,7 +28,11 @@
       "display_name": "Code Review Specialist",
       "version": "1.0.0",
       "trust_tier": "official",
-      "categories": ["development", "code-review", "security"],
+      "categories": [
+        "development",
+        "code-review",
+        "security"
+      ],
       "image": "ghcr.io/lucid-fdn/agent-runtime:v1.0.0"
     },
     {
@@ -29,64 +40,307 @@
       "display_name": "OpenClaw Personal Assistant",
       "version": "1.0.0",
       "trust_tier": "official",
-      "categories": ["assistant", "messaging", "personal", "voice", "search"],
+      "categories": [
+        "assistant",
+        "messaging",
+        "personal",
+        "voice",
+        "search"
+      ],
       "image": "ghcr.io/lucid-fdn/lucid-agents/openclaw:latest",
       "skills": [
-        {"slug": "weather", "name": "Weather", "description": "Current weather and forecasts", "bundled": true},
-        {"slug": "summarize", "name": "Summarize", "description": "Summarize URLs, podcasts, files", "bundled": true},
-        {"slug": "healthcheck", "name": "Security Audit", "description": "Host security hardening", "bundled": true},
-        {"slug": "session-logs", "name": "Session Logs", "description": "Search past conversations", "bundled": true},
-        {"slug": "model-usage", "name": "Model Usage", "description": "Per-model cost tracking", "bundled": true},
-        {"slug": "clawhub", "name": "ClawHub", "description": "Install skills from registry", "bundled": true},
-        {"slug": "skill-creator", "name": "Skill Creator", "description": "Create new skills interactively", "bundled": true},
-        {"slug": "coding-agent", "name": "Coding Agent", "description": "Delegate coding to Codex/Claude Code"},
-        {"slug": "github", "name": "GitHub", "description": "Issues, PRs, CI, code review via gh CLI", "env": "GITHUB_TOKEN"},
-        {"slug": "gh-issues", "name": "GitHub Issues Bot", "description": "Auto-fix issues, open PRs", "env": "GITHUB_TOKEN"},
-        {"slug": "browser", "name": "Browser Automation", "description": "Navigate, click, extract from web"},
-        {"slug": "firecrawl", "name": "Web Scraping", "description": "Crawl websites at scale", "env": "FIRECRAWL_API_KEY"},
-        {"slug": "xurl", "name": "X (Twitter)", "description": "Post tweets, search, DMs, followers"},
-        {"slug": "blogwatcher", "name": "Blog Watcher", "description": "Monitor blogs and RSS feeds"},
-        {"slug": "goplaces", "name": "Google Places", "description": "Search places, reviews, details"},
-        {"slug": "nano-pdf", "name": "PDF Editor", "description": "Edit PDFs with natural language"},
-        {"slug": "notion", "name": "Notion", "description": "Manage Notion pages and databases"},
-        {"slug": "obsidian", "name": "Obsidian", "description": "Work with Obsidian vaults"},
-        {"slug": "trello", "name": "Trello", "description": "Manage boards, lists, cards"},
-        {"slug": "himalaya", "name": "Email (IMAP)", "description": "Read, write, search emails"},
-        {"slug": "gog", "name": "Google Workspace", "description": "Gmail, Calendar, Drive, Sheets, Docs"},
-        {"slug": "slack", "name": "Slack Tools", "description": "Advanced Slack operations"},
-        {"slug": "discord", "name": "Discord Tools", "description": "Advanced Discord operations"},
-        {"slug": "wacli", "name": "WhatsApp Tools", "description": "Send messages, search history"},
-        {"slug": "openai-image-gen", "name": "Image Generation", "description": "Generate images via OpenAI", "env": "OPENAI_API_KEY"},
-        {"slug": "nano-banana-pro", "name": "Gemini Image Gen", "description": "Generate/edit images via Gemini 3"},
-        {"slug": "gemini", "name": "Gemini CLI", "description": "Q&A, summaries via Gemini"},
-        {"slug": "video-frames", "name": "Video Analysis", "description": "Extract frames from video"},
-        {"slug": "gifgrep", "name": "GIF Search", "description": "Search and download GIFs"},
-        {"slug": "songsee", "name": "Audio Visualizer", "description": "Generate spectrograms"},
-        {"slug": "voice-call", "name": "Voice Calls", "description": "Start voice calls", "env": "ELEVENLABS_API_KEY"},
-        {"slug": "sag", "name": "TTS (Cloud)", "description": "ElevenLabs text-to-speech", "env": "ELEVENLABS_API_KEY"},
-        {"slug": "sherpa-onnx-tts", "name": "TTS (Local)", "description": "Offline text-to-speech"},
-        {"slug": "openai-whisper", "name": "STT (Local)", "description": "Local transcription with Whisper"},
-        {"slug": "openai-whisper-api", "name": "STT (Cloud)", "description": "Transcribe via OpenAI API", "env": "OPENAI_API_KEY"},
-        {"slug": "openhue", "name": "Philips Hue", "description": "Control smart lights"},
-        {"slug": "camsnap", "name": "Camera Capture", "description": "Capture from RTSP/ONVIF cameras"},
-        {"slug": "sonoscli", "name": "Sonos", "description": "Control Sonos speakers"},
-        {"slug": "blucli", "name": "BluOS", "description": "BluOS playback and grouping"},
-        {"slug": "spotify-player", "name": "Spotify", "description": "Spotify playback and search"},
-        {"slug": "eightctl", "name": "Eight Sleep", "description": "Control pod temperature"},
-        {"slug": "1password", "name": "1Password", "description": "Secrets via 1Password CLI"},
-        {"slug": "oracle", "name": "Oracle CLI", "description": "Prompt bundling and sessions"},
-        {"slug": "tmux", "name": "Terminal (tmux)", "description": "Remote-control tmux sessions"},
-        {"slug": "mcporter", "name": "MCP Bridge", "description": "Connect to MCP tool servers"},
-        {"slug": "apple-notes", "name": "Apple Notes", "description": "Manage notes (macOS only)"},
-        {"slug": "apple-reminders", "name": "Apple Reminders", "description": "Manage reminders (macOS only)"},
-        {"slug": "bear-notes", "name": "Bear Notes", "description": "Bear notes (macOS only)"},
-        {"slug": "things-mac", "name": "Things 3", "description": "Task management (macOS only)"},
-        {"slug": "imsg", "name": "iMessage", "description": "Send messages (macOS only)"},
-        {"slug": "peekaboo", "name": "macOS UI Auto", "description": "Capture/automate macOS UI"},
-        {"slug": "canvas", "name": "Canvas", "description": "Visual canvas (macOS only)"},
-        {"slug": "bluebubbles", "name": "BlueBubbles", "description": "iMessage via BlueBubbles"},
-        {"slug": "node-connect", "name": "Node Connect", "description": "Diagnose pairing failures"},
-        {"slug": "ordercli", "name": "Food Delivery", "description": "Check food delivery orders"}
+        {
+          "slug": "weather",
+          "name": "Weather",
+          "description": "Current weather and forecasts",
+          "bundled": true
+        },
+        {
+          "slug": "summarize",
+          "name": "Summarize",
+          "description": "Summarize URLs, podcasts, files",
+          "bundled": true
+        },
+        {
+          "slug": "healthcheck",
+          "name": "Security Audit",
+          "description": "Host security hardening",
+          "bundled": true
+        },
+        {
+          "slug": "session-logs",
+          "name": "Session Logs",
+          "description": "Search past conversations",
+          "bundled": true
+        },
+        {
+          "slug": "model-usage",
+          "name": "Model Usage",
+          "description": "Per-model cost tracking",
+          "bundled": true
+        },
+        {
+          "slug": "clawhub",
+          "name": "ClawHub",
+          "description": "Install skills from registry",
+          "bundled": true
+        },
+        {
+          "slug": "skill-creator",
+          "name": "Skill Creator",
+          "description": "Create new skills interactively",
+          "bundled": true
+        },
+        {
+          "slug": "coding-agent",
+          "name": "Coding Agent",
+          "description": "Delegate coding to Codex/Claude Code"
+        },
+        {
+          "slug": "github",
+          "name": "GitHub",
+          "description": "Issues, PRs, CI, code review via gh CLI",
+          "env": "GITHUB_TOKEN"
+        },
+        {
+          "slug": "gh-issues",
+          "name": "GitHub Issues Bot",
+          "description": "Auto-fix issues, open PRs",
+          "env": "GITHUB_TOKEN"
+        },
+        {
+          "slug": "browser",
+          "name": "Browser Automation",
+          "description": "Navigate, click, extract from web"
+        },
+        {
+          "slug": "firecrawl",
+          "name": "Web Scraping",
+          "description": "Crawl websites at scale",
+          "env": "FIRECRAWL_API_KEY"
+        },
+        {
+          "slug": "xurl",
+          "name": "X (Twitter)",
+          "description": "Post tweets, search, DMs, followers"
+        },
+        {
+          "slug": "blogwatcher",
+          "name": "Blog Watcher",
+          "description": "Monitor blogs and RSS feeds"
+        },
+        {
+          "slug": "goplaces",
+          "name": "Google Places",
+          "description": "Search places, reviews, details",
+          "env": "GOOGLE_PLACES_API_KEY"
+        },
+        {
+          "slug": "nano-pdf",
+          "name": "PDF Editor",
+          "description": "Edit PDFs with natural language"
+        },
+        {
+          "slug": "notion",
+          "name": "Notion",
+          "description": "Manage Notion pages and databases",
+          "env": "NOTION_API_KEY"
+        },
+        {
+          "slug": "obsidian",
+          "name": "Obsidian",
+          "description": "Work with Obsidian vaults"
+        },
+        {
+          "slug": "trello",
+          "name": "Trello",
+          "description": "Manage boards, lists, cards"
+        },
+        {
+          "slug": "himalaya",
+          "name": "Email (IMAP)",
+          "description": "Read, write, search emails"
+        },
+        {
+          "slug": "gog",
+          "name": "Google Workspace",
+          "description": "Gmail, Calendar, Drive, Sheets, Docs"
+        },
+        {
+          "slug": "slack",
+          "name": "Slack Tools",
+          "description": "Advanced Slack operations"
+        },
+        {
+          "slug": "discord",
+          "name": "Discord Tools",
+          "description": "Advanced Discord operations"
+        },
+        {
+          "slug": "wacli",
+          "name": "WhatsApp Tools",
+          "description": "Send messages, search history"
+        },
+        {
+          "slug": "openai-image-gen",
+          "name": "Image Generation",
+          "description": "Generate images via OpenAI",
+          "env": "OPENAI_API_KEY"
+        },
+        {
+          "slug": "nano-banana-pro",
+          "name": "Gemini Image Gen",
+          "description": "Generate/edit images via Gemini 3",
+          "env": "GEMINI_API_KEY"
+        },
+        {
+          "slug": "gemini",
+          "name": "Gemini CLI",
+          "description": "Q&A, summaries via Gemini"
+        },
+        {
+          "slug": "video-frames",
+          "name": "Video Analysis",
+          "description": "Extract frames from video"
+        },
+        {
+          "slug": "gifgrep",
+          "name": "GIF Search",
+          "description": "Search and download GIFs"
+        },
+        {
+          "slug": "songsee",
+          "name": "Audio Visualizer",
+          "description": "Generate spectrograms"
+        },
+        {
+          "slug": "voice-call",
+          "name": "Voice Calls",
+          "description": "Start voice calls",
+          "env": "ELEVENLABS_API_KEY"
+        },
+        {
+          "slug": "sag",
+          "name": "TTS (Cloud)",
+          "description": "ElevenLabs text-to-speech",
+          "env": "ELEVENLABS_API_KEY"
+        },
+        {
+          "slug": "sherpa-onnx-tts",
+          "name": "TTS (Local)",
+          "description": "Offline text-to-speech"
+        },
+        {
+          "slug": "openai-whisper",
+          "name": "STT (Local)",
+          "description": "Local transcription with Whisper"
+        },
+        {
+          "slug": "openai-whisper-api",
+          "name": "STT (Cloud)",
+          "description": "Transcribe via OpenAI API",
+          "env": "OPENAI_API_KEY"
+        },
+        {
+          "slug": "openhue",
+          "name": "Philips Hue",
+          "description": "Control smart lights"
+        },
+        {
+          "slug": "camsnap",
+          "name": "Camera Capture",
+          "description": "Capture from RTSP/ONVIF cameras"
+        },
+        {
+          "slug": "sonoscli",
+          "name": "Sonos",
+          "description": "Control Sonos speakers"
+        },
+        {
+          "slug": "blucli",
+          "name": "BluOS",
+          "description": "BluOS playback and grouping"
+        },
+        {
+          "slug": "spotify-player",
+          "name": "Spotify",
+          "description": "Spotify playback and search"
+        },
+        {
+          "slug": "eightctl",
+          "name": "Eight Sleep",
+          "description": "Control pod temperature"
+        },
+        {
+          "slug": "1password",
+          "name": "1Password",
+          "description": "Secrets via 1Password CLI"
+        },
+        {
+          "slug": "oracle",
+          "name": "Oracle CLI",
+          "description": "Prompt bundling and sessions"
+        },
+        {
+          "slug": "tmux",
+          "name": "Terminal (tmux)",
+          "description": "Remote-control tmux sessions"
+        },
+        {
+          "slug": "mcporter",
+          "name": "MCP Bridge",
+          "description": "Connect to MCP tool servers"
+        },
+        {
+          "slug": "apple-notes",
+          "name": "Apple Notes",
+          "description": "Manage notes (macOS only)"
+        },
+        {
+          "slug": "apple-reminders",
+          "name": "Apple Reminders",
+          "description": "Manage reminders (macOS only)"
+        },
+        {
+          "slug": "bear-notes",
+          "name": "Bear Notes",
+          "description": "Bear notes (macOS only)"
+        },
+        {
+          "slug": "things-mac",
+          "name": "Things 3",
+          "description": "Task management (macOS only)"
+        },
+        {
+          "slug": "imsg",
+          "name": "iMessage",
+          "description": "Send messages (macOS only)"
+        },
+        {
+          "slug": "peekaboo",
+          "name": "macOS UI Auto",
+          "description": "Capture/automate macOS UI"
+        },
+        {
+          "slug": "canvas",
+          "name": "Canvas",
+          "description": "Visual canvas (macOS only)"
+        },
+        {
+          "slug": "bluebubbles",
+          "name": "BlueBubbles",
+          "description": "iMessage via BlueBubbles"
+        },
+        {
+          "slug": "node-connect",
+          "name": "Node Connect",
+          "description": "Diagnose pairing failures"
+        },
+        {
+          "slug": "ordercli",
+          "name": "Food Delivery",
+          "description": "Check food delivery orders"
+        }
       ]
     }
   ],
