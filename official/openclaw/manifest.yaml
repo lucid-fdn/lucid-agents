@@ -1,6 +1,6 @@
 name: openclaw
 display_name: "OpenClaw Personal Assistant"
-description: "Personal AI assistant with 22+ messaging channel support. Set your API key — one command to deploy."
+description: "Personal AI assistant with 22+ messaging channels. Set API key + Telegram token — fully configured in one command."
 version: "1.0.0"
 author: "Lucid Foundation"
 license: "Apache-2.0"
@@ -17,7 +17,15 @@ optional_env:
     description: "LLM model"
     default: "anthropic/claude-opus-4-6"
   - name: OPENAI_API_KEY
-    description: "OpenAI API key (alternative to Anthropic)"
+    description: "OpenAI key (alternative to Anthropic)"
+  - name: TELEGRAM_BOT_TOKEN
+    description: "Telegram bot token (create via @BotFather → /newbot)"
+  - name: DISCORD_BOT_TOKEN
+    description: "Discord bot token (discord.com/developers/applications)"
+  - name: SLACK_BOT_TOKEN
+    description: "Slack bot token (xoxb-...)"
+  - name: SLACK_SIGNING_SECRET
+    description: "Slack app signing secret"
 resources:
   gpu: false
   memory: "512Mi"
