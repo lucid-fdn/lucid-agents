@@ -1,6 +1,6 @@
 name: openclaw
 display_name: "OpenClaw Personal Assistant"
-description: "Autonomous personal AI — 22+ channels, 53 bundled skills, web search, voice. One command to deploy."
+description: "Autonomous personal AI — 22+ channels, 53+ skills (auto-discovered), web search, voice. One command to deploy."
 version: "1.0.0"
 author: "Lucid Foundation"
 license: "Apache-2.0"
@@ -31,13 +31,17 @@ optional_env:
   - name: SLACK_SIGNING_SECRET
     description: "Slack signing secret"
   - name: BRAVE_API_KEY
-    description: "Brave Search API — web search (brave.com/search/api)"
+    description: "Brave Search API (brave.com/search/api)"
   - name: ELEVENLABS_API_KEY
-    description: "ElevenLabs — voice/TTS (elevenlabs.io)"
+    description: "ElevenLabs voice/TTS (elevenlabs.io)"
   - name: OPENCLAW_TZ
     description: "Agent timezone"
     default: "UTC"
 
+# Skills are auto-discovered from the Docker image at launch time.
+# Bundled skills are always installed. Optional skills shown to user.
+# Manifest only declares metadata for skills that need env vars.
+skills_enabled: true
 skills:
   bundled:
     - weather
@@ -47,11 +51,8 @@ skills:
     - model-usage
     - clawhub
     - skill-creator
+  # Metadata for skills requiring API keys (auto-discovered skills without entries here just show slug name)
   optional:
-    # Coding & Dev
-    - slug: coding-agent
-      display_name: "Coding Agent"
-      description: "Delegate coding tasks to Codex, Claude Code, or Pi agents"
     - slug: github
       display_name: "GitHub"
       description: "Issues, PRs, CI runs, code review via gh CLI"
@@ -62,157 +63,31 @@ skills:
       description: "Auto-fetch issues, spawn agents to fix, open PRs"
       env: GITHUB_TOKEN
       env_description: "GitHub personal access token"
-    - slug: tmux
-      display_name: "Terminal (tmux)"
-      description: "Remote-control tmux sessions for interactive CLIs"
-    - slug: mcporter
-      display_name: "MCP Bridge"
-      description: "Connect to external MCP tool servers"
-    # Web & Research
-    - slug: browser
-      display_name: "Browser Automation"
-      description: "Navigate, click, extract from web pages"
     - slug: firecrawl
       display_name: "Web Scraping"
       description: "Crawl and scrape websites at scale"
       env: FIRECRAWL_API_KEY
       env_description: "Firecrawl API key (firecrawl.dev)"
-    - slug: xurl
-      display_name: "X (Twitter) API"
-      description: "Post tweets, search, DMs, manage followers"
-    - slug: blogwatcher
-      display_name: "Blog Watcher"
-      description: "Monitor blogs and RSS/Atom feeds"
-    - slug: goplaces
-      display_name: "Google Places"
-      description: "Search places, reviews, details via Google Places API"
-    # Documents & Data
-    - slug: nano-pdf
-      display_name: "PDF Editor"
-      description: "Edit PDFs with natural language instructions"
-    - slug: notion
-      display_name: "Notion"
-      description: "Create/manage Notion pages and databases"
-    - slug: obsidian
-      display_name: "Obsidian"
-      description: "Work with Obsidian vaults (Markdown notes)"
-    - slug: trello
-      display_name: "Trello"
-      description: "Manage Trello boards, lists, and cards"
-    # Email & Comms
-    - slug: himalaya
-      display_name: "Email (IMAP)"
-      description: "Read, write, reply, search emails via IMAP/SMTP"
-    - slug: gog
-      display_name: "Google Workspace"
-      description: "Gmail, Calendar, Drive, Contacts, Sheets, Docs"
-    - slug: slack
-      display_name: "Slack Tools"
-      description: "React, pin/unpin, advanced Slack operations"
-    - slug: discord
-      display_name: "Discord Tools"
-      description: "Advanced Discord server operations"
-    - slug: wacli
-      display_name: "WhatsApp Tools"
-      description: "Send messages, search/sync WhatsApp history"
-    # Media & Creative
     - slug: openai-image-gen
       display_name: "Image Generation"
-      description: "Generate images via OpenAI Images API"
+      description: "Generate images via OpenAI API"
       env: OPENAI_API_KEY
       env_description: "OpenAI API key"
-    - slug: nano-banana-pro
-      display_name: "Gemini Image Gen"
-      description: "Generate or edit images via Gemini 3 Pro"
-    - slug: gemini
-      display_name: "Gemini CLI"
-      description: "One-shot Q&A, summaries, generation via Gemini"
-    - slug: video-frames
-      display_name: "Video Analysis"
-      description: "Extract frames or clips from video with ffmpeg"
-    - slug: gifgrep
-      display_name: "GIF Search"
-      description: "Search GIF providers, download, extract stills"
-    - slug: songsee
-      display_name: "Audio Visualizer"
-      description: "Generate spectrograms from audio files"
-    # Voice & Audio
-    - slug: voice-call
-      display_name: "Voice Calls"
-      description: "Start voice calls via OpenClaw plugin"
-      env: ELEVENLABS_API_KEY
-      env_description: "ElevenLabs API key"
-    - slug: sag
-      display_name: "Text-to-Speech (Cloud)"
-      description: "ElevenLabs TTS with mac-style say UX"
-      env: ELEVENLABS_API_KEY
-      env_description: "ElevenLabs API key"
-    - slug: sherpa-onnx-tts
-      display_name: "Text-to-Speech (Local)"
-      description: "Offline TTS via sherpa-onnx (no cloud)"
-    - slug: openai-whisper
-      display_name: "Speech-to-Text (Local)"
-      description: "Local transcription with Whisper CLI (no API key)"
     - slug: openai-whisper-api
       display_name: "Speech-to-Text (Cloud)"
       description: "Transcribe audio via OpenAI Whisper API"
       env: OPENAI_API_KEY
       env_description: "OpenAI API key"
-    # Smart Home & Hardware
-    - slug: openhue
-      display_name: "Philips Hue"
-      description: "Control smart lights and scenes"
-    - slug: camsnap
-      display_name: "Camera Capture"
-      description: "Capture frames from RTSP/ONVIF cameras"
-    - slug: sonoscli
-      display_name: "Sonos"
-      description: "Control Sonos speakers (play/volume/group)"
-    - slug: blucli
-      display_name: "BluOS"
-      description: "BluOS playback, grouping, and volume"
-    - slug: spotify-player
-      display_name: "Spotify"
-      description: "Terminal Spotify playback and search"
-    - slug: eightctl
-      display_name: "Eight Sleep"
-      description: "Control Eight Sleep pod temperature/alarms"
-    # Secrets & Security
-    - slug: 1password
-      display_name: "1Password"
-      description: "Read/inject secrets via 1Password CLI"
-    - slug: oracle
-      display_name: "Oracle CLI"
-      description: "Prompt + file bundling, engines, sessions"
-    # macOS-only (require macOS host)
-    - slug: apple-notes
-      display_name: "Apple Notes"
-      description: "Manage Apple Notes (macOS only)"
-    - slug: apple-reminders
-      display_name: "Apple Reminders"
-      description: "Manage Reminders (macOS only)"
-    - slug: bear-notes
-      display_name: "Bear Notes"
-      description: "Create/search Bear notes (macOS only)"
-    - slug: things-mac
-      display_name: "Things 3"
-      description: "Manage Things 3 tasks (macOS only)"
-    - slug: imsg
-      display_name: "iMessage"
-      description: "List chats, send messages (macOS only)"
-    - slug: peekaboo
-      display_name: "macOS UI Automation"
-      description: "Capture and automate macOS UI (macOS only)"
-    - slug: canvas
-      display_name: "Canvas"
-      description: "Visual canvas tools (macOS only)"
-    # Food & Misc
-    - slug: ordercli
-      display_name: "Food Delivery"
-      description: "Check Foodora past orders and active status"
-    - slug: node-connect
-      display_name: "Node Connect Troubleshooter"
-      description: "Diagnose OpenClaw node pairing failures"
+    - slug: voice-call
+      display_name: "Voice Calls"
+      description: "Start voice calls via OpenClaw"
+      env: ELEVENLABS_API_KEY
+      env_description: "ElevenLabs API key"
+    - slug: sag
+      display_name: "Text-to-Speech (Cloud)"
+      description: "ElevenLabs TTS"
+      env: ELEVENLABS_API_KEY
+      env_description: "ElevenLabs API key"
 
 resources:
   gpu: false
