@@ -1,9 +1,0 @@
-{
-  "agent": {
-    "model": "anthropic/claude-sonnet-4-6"
-  },
-  "gateway": {
-    "host": "0.0.0.0",
-    "port": 18789
-  }
-}
