@@ -45,6 +45,28 @@ optional_env:
     description: "Agent timezone"
     default: "UTC"
 
+skills:
+  bundled:
+    - web-search
+    - memory
+  optional:
+    - slug: firecrawl
+      display_name: "Web Scraping"
+      description: "Crawl and scrape websites"
+      env: FIRECRAWL_API_KEY
+      env_description: "Firecrawl API key (firecrawl.dev)"
+    - slug: github
+      display_name: "GitHub Integration"
+      description: "Read/write repos, issues, PRs"
+      env: GITHUB_TOKEN
+      env_description: "GitHub personal access token"
+    - slug: browser
+      display_name: "Browser Automation"
+      description: "Navigate, click, extract from web pages"
+    - slug: pdf
+      display_name: "PDF Processing"
+      description: "Read, extract, and analyze PDF files"
+
 resources:
   gpu: false
   memory: "512Mi"

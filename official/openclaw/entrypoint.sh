@@ -124,5 +124,21 @@ echo "[Lucid]   WebChat: enabled (http://localhost:$PORT)"
 [ -n "$BRAVE_API_KEY" ] && echo "[Lucid]   Web search: enabled (Brave)"
 [ -n "$ELEVENLABS_API_KEY" ] && echo "[Lucid]   Voice TTS: enabled (ElevenLabs)"
 
+# Install skills from LUCID_SKILLS env var
+if [ -n "$LUCID_SKILLS" ]; then
+  echo "[Lucid] Installing skills..."
+  IFS=',' read -ra SKILLS <<< "$LUCID_SKILLS"
+  for skill in "${SKILLS[@]}"; do
+    skill=$(echo "$skill" | xargs)  # trim whitespace
+    if [ -n "$skill" ]; then
+      echo "[Lucid]   Installing: $skill"
+      openclaw skills install "$skill" 2>/dev/null || \
+        clawhub install "$skill" 2>/dev/null || \
+        echo "[Lucid]   Skill $skill not found"
+    fi
+  done
+  echo "[Lucid] Skills installed"
+fi
+
 # Start OpenClaw gateway
 exec openclaw gateway --port "$PORT" --verbose
