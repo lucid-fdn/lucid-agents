@@ -45,22 +45,27 @@ jobs:
           docker push ghcr.io/lucid-fdn/lucid-agents/openclaw:v$VERSION
           docker push ghcr.io/lucid-fdn/lucid-agents/openclaw:latest
 
-      - name: Update built version + manifest
+      - name: Extract skills from image + update catalog
         if: steps.version.outputs.skip == 'false'
+        env:
+          OC_VERSION: ${{ steps.version.outputs.latest }}
         run: |
-          VERSION=${{ steps.version.outputs.latest }}
-          echo "$VERSION" > official/openclaw/.built-version
-          # Update manifest image tag
-          sed -i "s|image: ghcr.io/lucid-fdn/lucid-agents/openclaw:.*|image: ghcr.io/lucid-fdn/lucid-agents/openclaw:v$VERSION|" official/openclaw/manifest.yaml
-          # Update catalog
-          node -e "
-            const fs = require('fs');
-            const cat = JSON.parse(fs.readFileSync('catalog.json'));
-            const oc = cat.agents.find(a => a.name === 'openclaw');
-            if (oc) { oc.version = '$VERSION'; oc.image = 'ghcr.io/lucid-fdn/lucid-agents/openclaw:v$VERSION'; }
-            cat.generated_at = new Date().toISOString();
-            fs.writeFileSync('catalog.json', JSON.stringify(cat, null, 2));
-          "
+          echo "$OC_VERSION" > official/openclaw/.built-version
+          sed -i "s|image: ghcr.io/lucid-fdn/lucid-agents/openclaw:.*|image: ghcr.io/lucid-fdn/lucid-agents/openclaw:v${OC_VERSION}|" official/openclaw/manifest.yaml
+
+          # Auto-extract skills from the built Docker image (no hardcoding)
+          docker run --rm "ghcr.io/lucid-fdn/lucid-agents/openclaw:v${OC_VERSION}" sh -c '
+            for dir in /usr/local/lib/node_modules/openclaw/skills/*/; do
+              name=$(basename "$dir")
+              desc=$(head -10 "$dir/SKILL.md" 2>/dev/null | grep -i "^description:" | sed "s/^description: *//" | head -1)
+              [ -z "$desc" ] && desc=$(sed -n "2p" "$dir/SKILL.md" 2>/dev/null | sed "s/^#* *//" | head -c 120)
+              env=$(grep -o "primaryEnv.*:.*\"[A-Z_]*\"" "$dir/SKILL.md" 2>/dev/null | grep -o "\"[A-Z_]*\"" | tr -d "\"" | head -1)
+              printf "%s\t%s\t%s\n" "$name" "$desc" "$env"
+            done
+          ' > /tmp/skills-raw.tsv
+
+          # Generate catalog.json with live skills from image
+          node scripts/update-catalog.js "$OC_VERSION" /tmp/skills-raw.tsv
 
       - name: Commit updates
         if: steps.version.outputs.skip == 'false'
