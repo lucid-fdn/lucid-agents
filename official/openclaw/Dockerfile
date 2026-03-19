@@ -1,9 +1,9 @@
-FROM node:20-slim
+FROM node:22-slim
 
-RUN apt-get update && apt-get install -y curl && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y curl git && rm -rf /var/lib/apt/lists/*
 
-# Install OpenClaw from npm (always latest)
-RUN npm install -g openclaw@latest
+# Install OpenClaw from npm (Node 22 required per openclaw docs)
+RUN npm install -g openclaw@latest --unsafe-perm
 
 # Create workspace
 RUN mkdir -p /workspace
