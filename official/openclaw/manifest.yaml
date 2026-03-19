@@ -5,15 +5,12 @@ version: "1.0.0"
 author: "Lucid Foundation"
 license: "Apache-2.0"
 trust_tier: official
-image: ghcr.io/openclaw/openclaw:latest
+image: ghcr.io/lucid-fdn/lucid-agents/openclaw:latest
 defaults:
   model: anthropic/claude-sonnet-4-6
   prompt: "You are a personal AI assistant connected to multiple messaging channels."
   port: 18789
 optional_env:
-  - name: OPENCLAW_WORKSPACE
-    description: "Path to workspace directory"
-    default: "/workspace"
   - name: OPENCLAW_MODEL
     description: "Default model provider/name"
     default: "anthropic/claude-sonnet-4-6"
