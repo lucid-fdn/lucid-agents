@@ -1,6 +1,6 @@
 name: openclaw
 display_name: "OpenClaw Personal Assistant"
-description: "Personal AI assistant with 22+ messaging channels. Set API key + Telegram token — fully configured in one command."
+description: "Personal AI assistant with 22+ messaging channels, web search, voice, and skills. Configure via env vars — one command to deploy."
 version: "1.0.0"
 author: "Lucid Foundation"
 license: "Apache-2.0"
@@ -9,27 +9,49 @@ image: ghcr.io/lucid-fdn/lucid-agents/openclaw:latest
 defaults:
   model: anthropic/claude-opus-4-6
   port: 18789
+
 required_env:
   - name: ANTHROPIC_API_KEY
     description: "Claude API key (console.anthropic.com/settings/keys)"
+
 optional_env:
+  # LLM Provider
   - name: OPENCLAW_MODEL
-    description: "LLM model"
+    description: "LLM model (anthropic/claude-opus-4-6, openai/gpt-4o, etc.)"
     default: "anthropic/claude-opus-4-6"
   - name: OPENAI_API_KEY
     description: "OpenAI key (alternative to Anthropic)"
+
+  # Messaging Channels
   - name: TELEGRAM_BOT_TOKEN
     description: "Telegram bot token (create via @BotFather → /newbot)"
   - name: DISCORD_BOT_TOKEN
     description: "Discord bot token (discord.com/developers/applications)"
   - name: SLACK_BOT_TOKEN
     description: "Slack bot token (xoxb-...)"
+  - name: SLACK_APP_TOKEN
+    description: "Slack app token for Socket Mode (xapp-...)"
   - name: SLACK_SIGNING_SECRET
-    description: "Slack app signing secret"
+    description: "Slack signing secret (for HTTP mode, if no app token)"
+
+  # Tools & Capabilities
+  - name: BRAVE_API_KEY
+    description: "Brave Search API key — enables web search tool (brave.com/search/api)"
+  - name: ELEVENLABS_API_KEY
+    description: "ElevenLabs API key — enables voice/TTS responses (elevenlabs.io)"
+
+  # Preferences
+  - name: OPENCLAW_TZ
+    description: "Agent timezone"
+    default: "UTC"
+
 resources:
   gpu: false
   memory: "512Mi"
+
 categories:
   - assistant
   - messaging
   - personal
+  - voice
+  - search
