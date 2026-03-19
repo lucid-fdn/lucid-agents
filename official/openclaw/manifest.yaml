@@ -1,6 +1,6 @@
 name: openclaw
 display_name: "OpenClaw Personal Assistant"
-description: "Personal AI assistant with 22+ messaging channels, web search, voice, and skills. Configure via env vars — one command to deploy."
+description: "Personal AI assistant with 22+ messaging channels, 53 skills, web search, voice. One command to deploy."
 version: "1.0.0"
 author: "Lucid Foundation"
 license: "Apache-2.0"
@@ -47,25 +47,109 @@ optional_env:
 
 skills:
   bundled:
-    - web-search
-    - memory
+    - weather
+    - summarize
+    - healthcheck
+    - session-logs
+    - model-usage
   optional:
-    - slug: firecrawl
-      display_name: "Web Scraping"
-      description: "Crawl and scrape websites"
-      env: FIRECRAWL_API_KEY
-      env_description: "Firecrawl API key (firecrawl.dev)"
+    # Productivity
+    - slug: coding-agent
+      display_name: "Coding Agent"
+      description: "Write, review, and debug code"
     - slug: github
-      display_name: "GitHub Integration"
+      display_name: "GitHub"
       description: "Read/write repos, issues, PRs"
       env: GITHUB_TOKEN
       env_description: "GitHub personal access token"
+    - slug: gh-issues
+      display_name: "GitHub Issues"
+      description: "Browse and manage GitHub issues"
+      env: GITHUB_TOKEN
+      env_description: "GitHub personal access token"
+    - slug: trello
+      display_name: "Trello"
+      description: "Manage Trello boards, lists, and cards"
+    - slug: notion
+      display_name: "Notion"
+      description: "Read/write Notion pages and databases"
+    # Web & Research
     - slug: browser
       display_name: "Browser Automation"
       description: "Navigate, click, extract from web pages"
-    - slug: pdf
+    - slug: firecrawl
+      display_name: "Web Scraping"
+      description: "Crawl and scrape websites at scale"
+      env: FIRECRAWL_API_KEY
+      env_description: "Firecrawl API key (firecrawl.dev)"
+    - slug: xurl
+      display_name: "URL Fetcher"
+      description: "Fetch and parse web page content"
+    - slug: nano-pdf
       display_name: "PDF Processing"
       description: "Read, extract, and analyze PDF files"
+    - slug: blogwatcher
+      display_name: "Blog Watcher"
+      description: "Monitor blogs and RSS feeds for updates"
+    # Media & Creative
+    - slug: openai-image-gen
+      display_name: "Image Generation"
+      description: "Generate images with AI (DALL-E / GPT)"
+      env: OPENAI_API_KEY
+      env_description: "OpenAI API key"
+    - slug: gemini
+      display_name: "Gemini Vision"
+      description: "Analyze images and visual content with Gemini"
+    - slug: video-frames
+      display_name: "Video Analysis"
+      description: "Extract and analyze frames from video"
+    - slug: gifgrep
+      display_name: "GIF Search"
+      description: "Search and send GIFs"
+    # Voice & Audio
+    - slug: voice-call
+      display_name: "Voice Calls"
+      description: "Make and receive voice calls"
+      env: ELEVENLABS_API_KEY
+      env_description: "ElevenLabs API key"
+    - slug: openai-whisper
+      display_name: "Speech-to-Text"
+      description: "Transcribe audio with Whisper"
+      env: OPENAI_API_KEY
+      env_description: "OpenAI API key"
+    - slug: sonoscli
+      display_name: "Sonos Control"
+      description: "Control Sonos speakers"
+    - slug: spotify-player
+      display_name: "Spotify"
+      description: "Control Spotify playback"
+    # Smart Home & IoT
+    - slug: openhue
+      display_name: "Philips Hue"
+      description: "Control smart lights"
+    - slug: camsnap
+      display_name: "Camera Capture"
+      description: "Capture images from connected cameras"
+    # Communication
+    - slug: slack
+      display_name: "Slack Tools"
+      description: "Advanced Slack workspace operations"
+    - slug: discord
+      display_name: "Discord Tools"
+      description: "Advanced Discord server operations"
+    - slug: himalaya
+      display_name: "Email (IMAP)"
+      description: "Read and send email via IMAP"
+    # Dev & System
+    - slug: tmux
+      display_name: "Terminal Multiplexer"
+      description: "Manage tmux sessions and windows"
+    - slug: skill-creator
+      display_name: "Skill Creator"
+      description: "Create new OpenClaw skills interactively"
+    - slug: mcporter
+      display_name: "MCP Bridge"
+      description: "Connect to external MCP tool servers"
 
 resources:
   gpu: false
